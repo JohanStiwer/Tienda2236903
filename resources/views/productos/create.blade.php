@@ -24,8 +24,8 @@
         <div class="input-field col s8">
           <input id="nombre" name="nombre" type="text" class="validate">
           <label for="nombre">Nompre de producto de la tienda de Jean</label>
-          <span>
-            {{ $errors->first() }}
+          <span class="red-text text-darken-4">
+            {{ $errors->first('nombre') }}
           </span>
         </div>
       </div>
@@ -33,12 +33,19 @@
         <div class="input-field col s8">
           <textarea id="desc" class="materialize-textarea" name="desc"></textarea>
           <label for="desc">Descripcion  </label>         
+          <span class="red-text text-darken-4">
+            {{ $errors->first('desc') }}
+          </span>
         </div>
+
       </div>
       <div class="row">
         <div class="input-field col s8">
           <input id="precio" type="number" class="validate" name="precio">
           <label for="precio">Precio</label>
+          <span class="red-text text-darken-4">
+            {{ $errors->first('precio') }}
+          </span>
         </div>
       </div>
       <div class="row">
@@ -59,8 +66,11 @@
               <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
 
             @endforeach
-          </select>
+          </select>         
           <label>Categorias disponibles en la tienda del Jean</label>
+          <span class="red-text text-darken-4">
+            {{ $errors->first('categoria') }}
+          </span>
         </div>
       </div>
     
@@ -72,8 +82,11 @@
               <option value="{{$marca->id}}">{{$marca->nombre}}</option>
 
             @endforeach
-          </select>
+          </select>         
           <label>Categorias disponibles en la tienda del Jean</label>
+          <span class="red-text text-darken-4">
+            {{ $errors->first('marca') }}
+          </span>
         </div>
       </div>
 
