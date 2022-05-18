@@ -11,10 +11,22 @@
     <form method="POST"   action="{{route('productos.store')}}"
      class="col s12">
      @csrf  
+     @if(session('mensaje')) 
+        <div class="row"> 
+          <div class="col s8">
+            <span class="teal-text text-accent-3">
+              {{  session('mensaje')  }}
+            </span>
+          </div>
+        </div>     
+     @endif
       <div class="row">
         <div class="input-field col s8">
           <input id="nombre" name="nombre" type="text" class="validate">
           <label for="nombre">Nompre de producto de la tienda de Jean</label>
+          <span>
+            {{ $errors->first() }}
+          </span>
         </div>
       </div>
       <div class="row">

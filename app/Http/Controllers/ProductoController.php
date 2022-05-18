@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
@@ -30,7 +31,7 @@ class ProductoController extends Controller
     {
         //Seleccionar marcas en bd: Model Marca
         $Marcas = Marca::all();
-        
+
         //Seleccionar marcas en bd: Model Marca
         $categorias = Categoria::all();
         return view('productos.create')->with("marcas", $Marcas)->with("categorias", $categorias);
@@ -44,16 +45,37 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //crear una entidad <<producto>>
-        $p = new producto();
-        $p-> nombre = $request->nombre;
-        $p->desc = $request->desc;
-        $p->precio =$request->precio;
-        $p->marca_id = $request->marca;
-        $p->categoria_id=$request->categoria;
-        $p->save();
-        echo "Producto registrado";
+
+        //1. Estalecer reglas de validacion 
+        $reglas = [
+            "nombre" => 'required|alpha',
+            "desc",
+            "precio"
+        ];
+
+        //2. Crear el validador
+
+        $v = Validator::make($request->all(), $reglas);
+
+        //3. Validar
+
+        if ($v->fails()) {
+            //validacion faliida
+            //Redirigir al formulario con mensaje de error
+            return redirect('productos/create')->withErrors($v);
+
+        } else {
+            //validacion exitosa
+            //crear una entidad <<producto>>
+            $p = new producto();
+            $p->nombre = $request->nombre;
+            $p->desc = $request->desc;
+            $p->precio = $request->precio;
+            $p->marca_id = $request->marca;
+            $p->categoria_id = $request->categoria;
+            $p->save();
+            return redirect('productos/create')->with('mensaje', "Producto registrado correctamente");
+        }
     }
 
     /**
