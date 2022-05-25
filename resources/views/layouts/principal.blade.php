@@ -9,11 +9,11 @@
 </head>
 <body>
   <body>
-    
+
   </body>
-  <nav class="lime darken-3">
+  <nav class="grey darken-1">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">La Tienda del Jean</a>
+      <a href="#" class="brand-logo"> _La Tienda del Jean</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="badges.html">Productos</a></li>
         <li><a href="collapsible.html">Pedidos</a></li>
@@ -31,8 +31,8 @@
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, []);
   });<!-- -->
-        
+
   </script>
- 
+
 </body>
 </html>

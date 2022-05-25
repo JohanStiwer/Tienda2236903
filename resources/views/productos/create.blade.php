@@ -1,24 +1,25 @@
 @extends('layouts.principal')
 
 @section('contenido')
-<div class="row"> 
+
+<div class="row">
   <h2 class="cyan-text text-accent-2">Nuevo Producto del Lichigo de Jean</h2>
 </div>
-    
-  
-  
+
+
+
   <div class="row">
-    <form method="POST"   action="{{route('productos.store')}}"
+    <form method="POST"   action="{{route('productos.store')}}" enctype="multipart/form-data"
      class="col s12">
-     @csrf  
-     @if(session('mensaje')) 
-        <div class="row"> 
+     @csrf
+     @if(session('mensaje'))
+        <div class="row">
           <div class="col s8">
             <span class="teal-text text-accent-3">
               {{  session('mensaje')  }}
             </span>
           </div>
-        </div>     
+        </div>
      @endif
       <div class="row">
         <div class="input-field col s8">
@@ -32,7 +33,7 @@
       <div class="row">
         <div class="input-field col s8">
           <textarea id="desc" class="materialize-textarea" name="desc"></textarea>
-          <label for="desc">Descripcion  </label>         
+          <label for="desc">Descripcion  </label>
           <span class="red-text text-darken-4">
             {{ $errors->first('desc') }}
           </span>
@@ -54,7 +55,12 @@
             <div class="btn">
               <span>Imagen de producto</span>
               <input type="file" name="imagen">
-            </div>         
+
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+                <span class="red-text text-darken-4">{{$errors->first('imagen')}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -66,14 +72,14 @@
               <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
 
             @endforeach
-          </select>         
+          </select>
           <label>Categorias disponibles en la tienda del Jean</label>
           <span class="red-text text-darken-4">
             {{ $errors->first('categoria') }}
           </span>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="input-field col s8 ">
           <select name="marca">
@@ -82,7 +88,7 @@
               <option value="{{$marca->id}}">{{$marca->nombre}}</option>
 
             @endforeach
-          </select>         
+          </select>
           <label>Categorias disponibles en la tienda del Jean</label>
           <span class="red-text text-darken-4">
             {{ $errors->first('marca') }}
@@ -101,5 +107,5 @@
       </div>
     </form>
   </div>
-        
+
 @endsection
