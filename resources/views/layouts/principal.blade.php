@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ asset('materialize/css/materialize.css') }}">    <title></title>
+
+    <link rel="stylesheet" href="{{ asset('materialize/css/materialize.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+       <title></title>
 </head>
 <body>
   <body>
@@ -28,9 +32,14 @@
   <script src="{{asset('materialize/js/materialize.js')}}"></script>
   <script >
       document.addEventListener('DOMContentLoaded', function() {
+        //Codigo de inicializacion de los select
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, []);
-  });<!-- -->
+    //Codigo de inicializacion de los tabs
+    let tabs = document.querySelector(".tabs");
+    var instance = M.init(tabs);
+    var instances = M.FormSelect.init(elems,[]);
+  });
 
   </script>
 
