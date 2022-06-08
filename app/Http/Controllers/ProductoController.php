@@ -81,7 +81,10 @@ class ProductoController extends Controller
      */
     public function show($producto)
     {
-        echo "Aqui se va a mostrar el detalle del producto";
+        //Seleccionar el producto a mostrar 
+        $p = Producto::find($producto);
+        //Mostrar el detalle del producto
+        return view('productos.details')->with('producto', $p);
     }
 
     /**
@@ -102,11 +105,11 @@ class ProductoController extends Controller
      * @param  \App\Models\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, producto $producto)
-    {
+    //public function update(Request $request, producto $producto)
+    /*{
         echo "Guarda el producto editado";
     }
-
+*/
     /**
      * Remove the specified resource from storage.
      *

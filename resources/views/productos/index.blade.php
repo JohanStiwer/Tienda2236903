@@ -19,7 +19,7 @@
                 </ul>
             </div>
             <div class="card-action">
-                <a href="#">VER DETALLES </a>
+                <a href="{{ route ('productos.show' , $producto->id) }}">VER DETALLES </a>
             </div>
         </div>
     </div>
