@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
@@ -15,12 +14,7 @@ class CartController extends Controller
     public function index()
     {
 
-        if (!session('cart')) {
-            echo "NO HAY ITEMS";
-        } else {
-            //ACCEDIENDO A LA VARIABLE DE SESSION
-            return  view('cart.index');
-        }
+       return view('cart.index');
     }
 
     /**
@@ -41,27 +35,40 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //PERSISTIR DATOS DE SESION
-        $producto = [["prod_id" => $request->prod_id, "cantidad" => $request->cantidad, "nombre_prod" => Producto::find($request->prod_id)->nombre]];
 
-        //1.El primer producto en el carrito
-        //Meter datos en una sesion
-        if (!session('cart')) {
+        //Estructura del producto
+        $producto = [  [
+            "prod_id" => $request->prod_id,
+            "cantidad" => $request->cantidad,
+            "precio"=> Producto::find($request->prod_id)->precio,
+            "nombre_prod" => Producto::find($request->prod_id)->nombre
+            ]
+        ];
 
+        if( !session('cart')){
             $aux[] = $producto;
-            session(['cart' => $aux]);
-        } else {
-            //EXTRAER LOS DATOS DEL CARRITO DE LA VARIABLE DE SESION
+            //1.el primer producto en el carrito
+            session(['cart'=> $aux]);
+
+        }else{
+
+            //extraer los datos del carrito de la variable de session
             $aux = session('cart');
-            //ELIMINAR LA VARIABLE DE SESION
+            //eliminar la variable de session
             session()->forget('cart');
-            //AGREGAR EL NUEVO PRODUCTO A LOS YA EXISTENTES
+            //agregar el nuevo producto y los ya existentes
             $aux[] = $producto;
-
+            //volver a crear la variable de sesion con el nuevo producto
             session(['cart' => $aux]);
         }
 
-        return redirect('productos')->with("mensaje", "producto añadido");
+        //redireccion al catalogo del producto
+        //con mensaje de exito
+
+        return redirect('productos')
+                        ->with('mensaje', 'El producto fue añadido al carrito.');
+
+
     }
 
     /**
@@ -107,5 +114,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         session()->forget('cart');
+        return redirect('cart');
+
     }
 }

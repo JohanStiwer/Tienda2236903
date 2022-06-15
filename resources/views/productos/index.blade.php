@@ -24,6 +24,13 @@
         </div>
     </div>
 
+    <div class="row">
+        <form action="{{ route('cart.destroy', 1   ) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button type="submit">Vaciar carrito</button>
+        </form>
+    </div>  
     @endforeach
 
 </div>

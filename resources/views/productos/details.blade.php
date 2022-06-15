@@ -27,6 +27,8 @@
     <form action="{{ route('cart.store')}}" method="POST">
         @csrf
         <input type="hidden" name="prod_id" value="{{$producto->id}}">
+        <input type="hidden" name="precio" value="{{$producto->precio}}">
+
         <div class="row">
             <div class="col s4">
                 <select name="cantidad" id="cantidad">
@@ -58,7 +60,7 @@
         </div>
     </form>
 
-   
+
 </div>
 
 @endsection

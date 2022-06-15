@@ -19,8 +19,8 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo"> _La Tienda del Jean</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="badges.html">Productos</a></li>
-        <li><a href="collapsible.html">Pedidos</a></li>
+        <li><a href="{{ url('productos') }}">Productos</a></li>
+        <li><a href="{{ url('cart')}}">Cart</a></li>
       </ul>
     </div>
   </nav>
